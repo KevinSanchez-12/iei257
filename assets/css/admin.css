@@ -1,0 +1,99 @@
+.body-admin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.body-admin .part-a{
+    width: 50%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/etc/11.jpg);
+}
+.body-admin .part-b{
+    width: 50%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.body-admin .part-b .titulo{
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.form-login-admin{
+    width: 290px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.form-login-admin div{
+    margin-bottom: 20px;
+    position: relative;
+}
+.form-login-admin div p{
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.form-login-admin div i{
+    position: absolute;
+    top: 39px;
+    right: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transition: .3s;
+}
+.form-login-admin div i:hover{
+    background-color: rgb(240, 240, 240);
+    transition: .3s;
+}
+.form-login-admin a{
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: var(--tertiary);
+    font-weight: 500;
+}
+.form-login-admin a:hover{
+    text-decoration: underline;
+}
+@media screen and (max-width: 640px){
+    .body-admin .part-a{
+        display: none;
+    }
+    .body-admin .part-b{
+        width: 100%;
+    }
+    .menu-admin .container .item-b .box .botones a span{
+        display: none;
+    }
+    .menu-admin .container .item-b .box .botones a i{
+        display: none;
+    }
+    .menu-admin .container .item-b .box .botones a p{
+        display: unset;
+        font-size: 1rem;
+    }
+    .menu-admin .container .item-b .box .a h1{
+        display: none;
+    }
+    .menu-admin .container .item-b .box .botones{
+        margin-left: 5px;
+    }
+    .menu-admin .container .item-b .box .botones a{
+        width: 4px;
+        padding: 10px;
+    }
+}

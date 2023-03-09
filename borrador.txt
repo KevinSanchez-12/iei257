@@ -1,0 +1,96 @@
+<?php
+    include 'database/bd.php';
+    foreach ($_FILES["imágenes"]["error"] as $clave => $error) {
+      if ($error == UPLOAD_ERR_OK) {
+          $nombre_tmp = $_FILES["imágenes"]["tmp_name"][$clave];
+          $nombre = basename($_FILES["imágenes"]["name"][$clave]);
+          move_uploaded_file($nombre_tmp, "assets/files/matriculaNuevo/".uniqid()."$nombre");
+      }
+    }
+    // function manageFiles($file){
+    //     $dircFiles = array();
+    //     $rutasArchivo = '';
+    //     $file_count = count($file['name']);
+    //     $file_keys = array_keys($file);
+    //     for ($i = 0; $i < $file_count; $i ++) {
+    //       foreach($file_keys as $key) {
+    //         $files[$i][$key] = $file[$key][$i];
+    //       }
+    //     }
+    //     foreach ($files as $fileId => $file) {
+    //       $fileContent = file_get_contents($file['tmp_name']);
+    //       $ruta = "assets/files/matriculaNuevo/".uniqid().".".pathinfo($file['name'], PATHINFO_EXTENSION);
+    //       file_put_contents($ruta, $fileContent);
+            
+    //       $dircFiles[$fileId] = $ruta;
+    //     }
+    //       $rutasArchivo = implode(':', $dircFiles);
+    //     return $dircFiles;
+    // }
+    // $ruta = manageFiles($_FILES['file']);
+    $ruta = $_FILES["imágenes"]["name"];
+    $tipoMatricula ="nuevo";
+    $nnombre = $_POST['nnombre'];
+    $napellido = $_POST['napellido'];
+    $naula = $_POST['naula'];
+    $nfechaNacimiento = $_POST['nfechaNacimiento'];
+    $ndni = $_POST['ndni'];
+    $nedad = "PRUEBA";
+    $ncapacidad = $_POST['ncapacidad'];
+    $ncapacidadEspecificacion = $_POST['ncapacidadEspecificacion'];
+    $nset = $_POST['nset'];
+    $pdni = $_POST['pdni'];
+    $pestadoCivil = $_POST['pestadoCivil'];
+    $mdni = $_POST['mdni'];
+    $mestadoCivil = $_POST['mestadoCivil'];
+
+    // $examinar = "SELECT COUNT(id) FROM matriculanuevo WHERE naula LIKE '3'";
+    // $examinarb = "SELECT COUNT(*) FROM matricularegular WHERE naula LIKE '3'";
+    // if($examinar+$examinarb < 6){
+    // if($examinar>5){  
+        $datos_documento = "INSERT INTO matriculanuevo(tipoMatricula, nfoto, nnombre, napellido, naula, nfechaNacimiento, nedad, ndni, ncopiaDni, ncopiaPartidaNacimiento, nfichaDatosSiagie, ncopiaTarjetaVacunacion, ncopiaAnalisisHemoglobina, ncapacidad, ncapacidadEspecificacion, nset, nfichaMatriculaSet, nfichaTrasladoSet, pdni, pcopiaDni, pestadoCivil, mdni, mcopiaDni, mestadoCivil) VALUES                 
+        ('$tipoMatricula', '$ruta[0]', '$nnombre', '$napellido', '$naula', '$nfechaNacimiento', '$nedad', '$ndni', '$ruta[1]', '$ruta[2]', '$ruta[3]', '$ruta[4]', '$ruta[5]', '$ncapacidad', '$ncapacidadEspecificacion', '$nset', '$ruta[6]', '$ruta[7]', '$pdni', '$ruta[8]', '$pestadoCivil', '$mdni', '$ruta[9]', '$mestadoCivil')";			
+        $declarar_documento = mysqli_query($conexion, $datos_documento);                                
+        if($declarar_documento) {
+            echo "<script> 
+            alert('Sus datos fueron enviados'); 
+            window.location = 'terminal'
+            </script>";
+        }else{
+            echo "<script> 
+        alert('Sus datos no fueron enviados, inténtelo de nuevo porfavor'); 
+        window.location = 'nuevo'
+        </script>";
+        }
+    // }else{
+    //     echo "<script> 
+    //     alert('No puede matricular a su hijo(a), se llegó al tope de alumnos por aula.'); 
+    //     window.location = 'nuevo'
+    //     </script>";
+    // }
+    
+
+    // EXAMINAR EL MINIMO DE REGISTROS
+    // $examinar = "SELECT COUNT(*) FROM matriculanuevo WHERE naula LIKE '3'";
+    // if($examinar>1){
+    //   $datos_documento = "INSERT INTO matriculanuevo(nfoto, nfechaNacimiento, nedad, ndni, ncopiaDni, ncopiaPartidaNacimiento, nfichaDatosSiagie, ncopiaTarjetaVacunacion, ncopiaAnalisisHemoglobina, ncapacidad, ncapacidadEspecificacion, nset, nfichaMatriculaSet, nfichaTrasladoSet, pdni, pcopiaDni, pestadoCivil, mdni, mcopiaDni, mestadoCivil) VALUES                 
+    //   ('$ruta[0]', '$nfechaNacimiento', '$nedad', '$ndni', '$ruta[1]', '$ruta[2]', '$ruta[3]', '$ruta[4]', '$ruta[5]', '$ncapacidad', '$ncapacidadEspecificacion', '$nset', '$ruta[6]', '$ruta[7]', '$pdni', '$ruta[8]', '$pestadoCivil', '$mdni', '$ruta[9]', '$mestadoCivil')";			
+    //   $declarar_documento = mysqli_query($conexion, $datos_documento);                                
+    //   if($declarar_documento) {
+    //       echo "<script> 
+    //       alert('Sus datos fueron enviados'); 
+    //       window.location = 'terminal'
+    //       </script>";
+    //   }else{
+    //       echo "<script> 
+    //   alert('Sus datos no fueron enviados, inténtelo de nuevo porfavor'); 
+    //   window.location = 'nuevo'
+    //   </script>";
+    //   }
+    // }else{
+    //   echo "<script> 
+    //   alert('NO SE PUEDE REGISTRAR LLEGÓ A 71 REGISTROS'); 
+    //   window.location = 'nuevo'
+    //   </script>";
+    // }
+?>
